@@ -17,17 +17,15 @@ def main():
   		
 	load_1min = str(os.popen("top -n1 | awk '/load average:/ {print $12}'").readline().strip()).replace(',', '' )
 	load_5min = str(os.popen("top -n1 | awk '/load average:/ {print $13}'").readline().strip()).replace(',', '' )
-	load_1min=float(load_1min)
-	load_5min=float(load_5min)
+	load_1min = float(load_1min)
+	load_5min = float(load_5min)
 	print('')	
 	print('load_1min: %.2f'%load_1min)
 	print('load_5min: %.2f'%load_5min)
 	
-	Ramused = str(os.popen("top -n1 | awk '/KiB/ {print $6}'").readline().strip()).replace(',', '' )
-	Ramused = int(Ramused)
-	Ramused = Ramused / 1000
+	Ramused = str(os.popen("top -n1 | awk '/MiB/ {print $6}'").readline().strip()).replace(',', '' )
 	print('')
-	print('Ramused: %d '%Ramused +' Mb')
+	print('Ramused: %s '%Ramused +' Mb')
 	
 	def getDiskSpace():
 		p = os.popen("df -h /")
